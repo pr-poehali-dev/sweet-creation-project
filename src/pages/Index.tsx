@@ -1,11 +1,22 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
+  const [quantity, setQuantity] = useState(50);
+  const [selectedFlavor, setSelectedFlavor] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerComment, setCustomerComment] = useState('');
+
+  const pricePerCookie = 150;
+  const totalPrice = quantity * pricePerCookie;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -119,7 +130,15 @@ const Index = () => {
       </nav>
 
       <section id="hero" className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-accent/5 to-transparent">
+          <div className="absolute inset-0 opacity-20">
+            <img 
+              src="https://cdn.poehali.dev/files/IMG_0837.jpeg" 
+              alt="Кукисы фон" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
         <div className="container mx-auto text-center relative z-10 animate-fade-in">
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold text-primary mb-6 font-heading">
             Кукис ручной работы
@@ -301,48 +320,157 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="order" className="py-20 px-4">
-        <div className="container mx-auto max-w-2xl">
+      <section id="order" className="py-20 px-4 relative">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://cdn.poehali.dev/files/IMG_3324.jpeg" 
+            alt="Кукисы фон" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto max-w-5xl relative z-10">
           <h2 className="text-5xl md:text-6xl font-bold text-center text-primary mb-8 font-heading animate-fade-in">
             Оптовый заказ
           </h2>
-          <Card className="p-8 md:p-12 shadow-2xl border-2 animate-scale-in">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <Icon name="Package" className="text-accent flex-shrink-0 mt-1" size={32} />
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-2 font-heading">Минимальный заказ</h3>
-                  <p className="text-primary/70">От 50 штук. Возможна доставка по городу</p>
-                </div>
-              </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-8 shadow-2xl border-2 animate-scale-in">
+              <h3 className="text-2xl font-bold text-primary mb-6 font-heading">Калькулятор заказа</h3>
               
-              <div className="flex items-start gap-4">
-                <Icon name="Clock" className="text-accent flex-shrink-0 mt-1" size={32} />
+              <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold text-primary mb-2 font-heading">Сроки производства</h3>
-                  <p className="text-primary/70">2-3 дня с момента подтверждения заказа</p>
+                  <Label htmlFor="quantity" className="text-base font-semibold">Количество кукисов</Label>
+                  <Input 
+                    id="quantity"
+                    type="number" 
+                    min="50"
+                    value={quantity}
+                    onChange={(e) => setQuantity(Math.max(50, parseInt(e.target.value) || 50))}
+                    className="mt-2 text-lg"
+                  />
+                  <p className="text-sm text-primary/60 mt-1">Минимальный заказ: 50 шт</p>
                 </div>
-              </div>
-              
-              <div className="flex items-start gap-4">
-                <Icon name="Star" className="text-accent flex-shrink-0 mt-1" size={32} />
-                <div>
-                  <h3 className="text-xl font-bold text-primary mb-2 font-heading">Индивидуальный подход</h3>
-                  <p className="text-primary/70">Возможность создания уникальных вкусов под ваш запрос</p>
-                </div>
-              </div>
 
-              <div className="pt-6 border-t">
+                <div>
+                  <Label htmlFor="flavor" className="text-base font-semibold">Выберите вкус</Label>
+                  <select 
+                    id="flavor"
+                    value={selectedFlavor}
+                    onChange={(e) => setSelectedFlavor(e.target.value)}
+                    className="w-full mt-2 px-4 py-3 rounded-lg border-2 border-input bg-background text-lg"
+                  >
+                    <option value="">Выберите вкус</option>
+                    {flavors.map((flavor, idx) => (
+                      <option key={idx} value={flavor.name}>{flavor.emoji} {flavor.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <Label htmlFor="name" className="text-base font-semibold">Ваше имя</Label>
+                  <Input 
+                    id="name"
+                    type="text" 
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
+                    placeholder="Иван Иванов"
+                    className="mt-2 text-lg"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="phone" className="text-base font-semibold">Телефон</Label>
+                  <Input 
+                    id="phone"
+                    type="tel" 
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
+                    placeholder="+7 (XXX) XXX-XX-XX"
+                    className="mt-2 text-lg"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="comment" className="text-base font-semibold">Комментарий (необязательно)</Label>
+                  <Textarea 
+                    id="comment"
+                    value={customerComment}
+                    onChange={(e) => setCustomerComment(e.target.value)}
+                    placeholder="Дополнительные пожелания к заказу"
+                    className="mt-2 text-lg min-h-24"
+                  />
+                </div>
+
+                <div className="bg-accent/10 rounded-xl p-6 border-2 border-accent/30">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-lg text-primary/80">Цена за 1 шт:</span>
+                    <span className="text-xl font-bold text-primary">{pricePerCookie} ₽</span>
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-accent/20">
+                    <span className="text-xl font-bold text-primary font-heading">Итого:</span>
+                    <span className="text-3xl font-bold text-accent">{totalPrice.toLocaleString()} ₽</span>
+                  </div>
+                </div>
+
                 <Button 
                   size="lg"
                   className="w-full bg-accent hover:bg-accent/90 text-white text-lg py-6"
-                  onClick={() => scrollToSection('contacts')}
+                  disabled={!customerName || !customerPhone || !selectedFlavor}
                 >
-                  Связаться с нами
+                  Отправить заявку
                 </Button>
               </div>
-            </div>
-          </Card>
+            </Card>
+
+            <Card className="p-8 shadow-2xl border-2 animate-scale-in" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-2xl font-bold text-primary mb-6 font-heading">Условия заказа</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <Icon name="Package" className="text-accent flex-shrink-0 mt-1" size={32} />
+                  <div>
+                    <h4 className="text-xl font-bold text-primary mb-2 font-heading">Минимальный заказ</h4>
+                    <p className="text-primary/70">От 50 штук. Возможна доставка по Сочи</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <Icon name="Clock" className="text-accent flex-shrink-0 mt-1" size={32} />
+                  <div>
+                    <h4 className="text-xl font-bold text-primary mb-2 font-heading">Сроки производства</h4>
+                    <p className="text-primary/70">2-3 дня с момента подтверждения заказа</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <Icon name="Star" className="text-accent flex-shrink-0 mt-1" size={32} />
+                  <div>
+                    <h4 className="text-xl font-bold text-primary mb-2 font-heading">Индивидуальный подход</h4>
+                    <p className="text-primary/70">Возможность создания уникальных вкусов под ваш запрос</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <Icon name="Truck" className="text-accent flex-shrink-0 mt-1" size={32} />
+                  <div>
+                    <h4 className="text-xl font-bold text-primary mb-2 font-heading">Доставка</h4>
+                    <p className="text-primary/70">Бесплатная доставка при заказе от 100 шт</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-secondary/50 rounded-xl">
+                  <img 
+                    src="https://cdn.poehali.dev/files/67be92e6-e63f-40cd-997c-39e348515e1a.jpeg" 
+                    alt="Кукисы с начинкой" 
+                    className="w-full rounded-lg shadow-lg mb-4"
+                  />
+                  <p className="text-sm text-primary/70 text-center italic">
+                    Все кукисы украшены вручную свежими ингредиентами
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
 
