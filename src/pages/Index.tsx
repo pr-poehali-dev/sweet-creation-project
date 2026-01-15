@@ -22,7 +22,7 @@ const Index = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
       
-      const sections = ['hero', 'flavors', 'process', 'about', 'order', 'contacts'];
+      const sections = ['hero', 'flavors', 'price', 'process', 'about', 'order', 'contacts'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -88,10 +88,96 @@ const Index = () => {
   const navItems = [
     { id: 'hero', label: 'Главная' },
     { id: 'flavors', label: 'Вкусы' },
+    { id: 'price', label: 'Прайс' },
     { id: 'process', label: 'Процесс' },
     { id: 'about', label: 'О нас' },
     { id: 'order', label: 'Заказ' },
     { id: 'contacts', label: 'Контакты' },
+  ];
+
+  const priceList = [
+    {
+      category: 'КУКИС',
+      items: [
+        { name: 'Арахисовый кукис с начинкой нутелла', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'Шоколадный кукис с фундуком', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'M&M (шоколадный с начинкой маршмеллоу)', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'M&M (ванильный с начинкой нутелла)', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'Три шоколада (ванильный кукис)', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'Три шоколада (шоколадный кукис)', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'Бархатная вишня', priceOpt: 130, priceReady: 150, priceRetail: '230 (300)' },
+        { name: 'Сникерс', priceOpt: 160, priceReady: 180, priceRetail: '250 (350)' },
+        { name: 'Дубайский', priceOpt: 160, priceReady: 180, priceRetail: '250 (350)' },
+        { name: 'Фисташка малина', priceOpt: 160, priceReady: 180, priceRetail: '250 (350)' },
+      ]
+    },
+    {
+      category: 'МАДЛЕН',
+      items: [
+        { name: 'Шоколадно-апельсиновое', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Фисташковое с малиной', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Пекан-кленовый сироп', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Матча и Вишня', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Фундук-Тоффи', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Тропик', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Малина и пармезан', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Апероль', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Мохито', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Рафаэлло', priceOpt: null, priceReady: 80, priceRetail: 150 },
+        { name: 'Смородина и лимон', priceOpt: null, priceReady: 80, priceRetail: 150 },
+      ]
+    },
+    {
+      category: 'КАРТОШКА',
+      items: [
+        { name: 'Тропик', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Рафаэлло', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Имбирный пряник', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Апельсин', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Буэно', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Хабиби', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Ферреро Роше', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Твикс', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'Вишня брауни', priceOpt: null, priceReady: 150, priceRetail: '250 (300)' },
+        { name: 'ТРУБОЧКИ со сгущенкой', priceOpt: null, priceReady: 100, priceRetail: '250 (300)' },
+      ]
+    },
+    {
+      category: 'ОРЕШКИ',
+      items: [
+        { name: 'Буэно', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Нутелла', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Шокобамба', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Ферреро Роше', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Фисташка-земляника', priceOpt: null, priceReady: 80, priceRetail: '120 (140)' },
+        { name: 'Ягодный глинтвейн', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Кофе-бейлис', priceOpt: null, priceReady: 80, priceRetail: '120 (140)' },
+        { name: 'Ваниль-малина', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Классика-кедр', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Классика грецкий', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Кокосик', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Тропик', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+        { name: 'Дубай', priceOpt: null, priceReady: 80, priceRetail: '120 (140)' },
+        { name: 'Ягодка', priceOpt: null, priceReady: 60, priceRetail: '100 (120)' },
+      ]
+    },
+    {
+      category: 'ЧИЗКЕЙК порционный',
+      items: [
+        { name: 'Орео', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Дубай', priceOpt: null, priceReady: 250, priceRetail: '350 (400)' },
+        { name: 'Маракуйя-горгонзолла', priceOpt: null, priceReady: 250, priceRetail: '350 (400)' },
+        { name: 'Тропик', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Вишня-шоколад', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Карамельное яблоко', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Киви-мохито', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Малина и пармезан', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Брусника камамбер', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+        { name: 'Трюфель малина', priceOpt: null, priceReady: 250, priceRetail: '350 (400)' },
+        { name: 'Тоффи пекан', priceOpt: null, priceReady: 250, priceRetail: '350 (400)' },
+        { name: 'Сливочный ягодный', priceOpt: null, priceReady: 200, priceRetail: '300 (350)' },
+      ]
+    },
   ];
 
   return (
@@ -218,6 +304,69 @@ const Index = () => {
                 При разломе открывается мягкая начинка: маршмелоу, нутелла и другие премиум-начинки
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="price" className="py-20 px-4 bg-gradient-to-br from-accent/5 to-transparent">
+        <div className="container mx-auto">
+          <h2 className="text-5xl md:text-6xl font-bold text-center text-primary mb-4 font-heading animate-fade-in">
+            Прайс-лист
+          </h2>
+          <p className="text-center text-xl text-primary/80 mb-16 max-w-2xl mx-auto">
+            Цены на всю продукцию. Оптовые цены обсуждаются индивидуально
+          </p>
+
+          <div className="grid gap-8 max-w-7xl mx-auto">
+            {priceList.map((category, catIdx) => (
+              <Card key={catIdx} className="p-6 md:p-8 shadow-xl border-2 animate-fade-in" style={{ animationDelay: `${catIdx * 0.1}s` }}>
+                <h3 className="text-3xl font-bold text-primary mb-6 font-heading bg-gradient-to-r from-accent/20 to-transparent p-4 rounded-lg">
+                  {category.category}
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="border-b-2 border-accent/30">
+                        <th className="text-left py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-primary">Наименование</th>
+                        {category.items[0].priceOpt !== null && (
+                          <th className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-primary">ОПТ п/ф</th>
+                        )}
+                        <th className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-primary">ОПТ готовое</th>
+                        <th className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-primary">Продажа, розница</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {category.items.map((item, itemIdx) => (
+                        <tr key={itemIdx} className="border-b border-primary/10 hover:bg-accent/5 transition-colors">
+                          <td className="py-3 px-2 md:px-4 text-sm md:text-base text-primary/80">{item.name}</td>
+                          {item.priceOpt !== null && (
+                            <td className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-primary">{item.priceOpt}</td>
+                          )}
+                          {item.priceOpt === null && category.items[0].priceOpt !== null && (
+                            <td className="text-center py-3 px-2 md:px-4 text-sm md:text-base text-primary/40">-</td>
+                          )}
+                          <td className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-semibold text-accent">{item.priceReady}</td>
+                          <td className="text-center py-3 px-2 md:px-4 text-sm md:text-base font-bold text-primary">{item.priceRetail}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-lg text-primary/70 mb-6">
+              * В скобках указана цена в красивой упаковке
+            </p>
+            <Button 
+              size="lg"
+              onClick={() => scrollToSection('order')}
+              className="bg-accent hover:bg-accent/90 text-white text-lg px-12 py-6"
+            >
+              Оформить заказ
+            </Button>
           </div>
         </div>
       </section>
