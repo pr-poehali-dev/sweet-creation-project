@@ -88,9 +88,13 @@ const Index = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl md:text-3xl font-bold text-primary-foreground font-heading">
-              СЛАДОВАРОВ
-            </h1>
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://cdn.poehali.dev/files/IMG_6861.jpeg" 
+                alt="СЛАДОВАРОВ логотип" 
+                className="h-12 md:h-14 w-auto"
+              />
+            </div>
             <div className="hidden md:flex gap-6">
               {navItems.map(item => (
                 <button
@@ -377,10 +381,26 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="bg-primary text-primary-foreground py-8 px-4 text-center">
-        <p className="text-primary-foreground/80">
-          © 2024 СЛАДОВАРОВ. Оптовое кондитерское производство
-        </p>
+      <footer className="bg-primary text-primary-foreground py-12 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-4">
+              <img 
+                src="https://cdn.poehali.dev/files/IMG_6861.jpeg" 
+                alt="СЛАДОВАРОВ логотип" 
+                className="h-20 md:h-24 w-auto"
+              />
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-primary-foreground/80 mb-2">
+                © 2025 СЛАДОВАРОВ. Оптовое кондитерское производство
+              </p>
+              <p className="text-primary-foreground/60 text-sm">
+                г. Сочи
+              </p>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
