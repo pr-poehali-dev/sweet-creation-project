@@ -308,7 +308,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="price" className="py-20 px-4 bg-gradient-to-br from-accent/5 to-transparent">
+      <section id="price" className="py-20 px-4 relative">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://cdn.poehali.dev/files/IMG_0884.jpeg" 
+            alt="Фон" 
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="container mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-center text-primary mb-4 font-heading animate-fade-in">
             Прайс-лист
@@ -371,8 +378,15 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="flavors" className="py-20 px-4 bg-gradient-to-br from-accent/10 to-transparent">
-        <div className="container mx-auto">
+      <section id="flavors" className="py-20 px-4 relative">
+        <div className="absolute inset-0 opacity-15">
+          <img 
+            src="https://cdn.poehali.dev/files/IMG_0845.jpeg" 
+            alt="Фон" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto relative z-10">
           <h2 className="text-5xl md:text-6xl font-bold text-center text-primary mb-4 font-heading animate-fade-in">
             Наши вкусы
           </h2>
@@ -414,8 +428,15 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="process" className="py-20 px-4">
-        <div className="container mx-auto">
+      <section id="process" className="py-20 px-4 relative">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://cdn.poehali.dev/files/IMG_0906.jpeg" 
+            alt="Фон" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto relative z-10">
           <h2 className="text-5xl md:text-6xl font-bold text-center text-primary mb-16 font-heading animate-fade-in">
             Процесс производства
           </h2>
@@ -450,7 +471,14 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-4 bg-gradient-to-br from-accent/5 to-transparent">
+      <section id="about" className="py-20 px-4 relative">
+        <div className="absolute inset-0 opacity-10">
+          <img 
+            src="https://cdn.poehali.dev/files/IMG_0837.jpeg" 
+            alt="Фон" 
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-5xl md:text-6xl font-bold text-primary mb-8 font-heading animate-fade-in">
             О производстве
